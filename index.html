@@ -9,47 +9,40 @@
   <meta http-equiv="Expires" content="0">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; padding: 20px; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; padding: 20px; }
     .container { max-width: 900px; margin: 0 auto; }
     .header { text-align: center; color: white; margin-bottom: 30px; }
-    .header h1 { font-size: 2.5em; margin-bottom: 10px; text-shadow: 2px 2px 4px rgba(0,0,0,0.2); }
+    .header h1 { font-size: 2.5em; margin-bottom: 10px; }
     .header p { font-size: 1.1em; opacity: 0.9; }
     .chat-container { background: white; border-radius: 20px; box-shadow: 0 20px 60px rgba(0,0,0,0.3); overflow: hidden; }
     .chat-messages { height: 500px; overflow-y: auto; padding: 30px; background: #f8f9fa; }
-    .message { margin-bottom: 20px; display: flex; animation: fadeIn 0.3s ease; }
-    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    .message { margin-bottom: 20px; display: flex; }
     .message.user { justify-content: flex-end; }
     .message-content { max-width: 70%; padding: 15px 20px; border-radius: 18px; line-height: 1.6; }
     .message.bot .message-content { background: white; border: 1px solid #e9ecef; border-bottom-left-radius: 4px; }
     .message.user .message-content { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border-bottom-right-radius: 4px; }
     .input-area { padding: 20px; background: white; border-top: 1px solid #e9ecef; display: flex; gap: 10px; }
-    .input-area input { flex: 1; padding: 15px 20px; border: 2px solid #e9ecef; border-radius: 25px; font-size: 16px; outline: none; transition: border-color 0.3s; }
+    .input-area input { flex: 1; padding: 15px 20px; border: 2px solid #e9ecef; border-radius: 25px; font-size: 16px; outline: none; }
     .input-area input:focus { border-color: #667eea; }
-    .input-area button { padding: 15px 30px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; border-radius: 25px; font-size: 16px; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; }
-    .input-area button:hover { transform: translateY(-2px); box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4); }
+    .input-area button { padding: 15px 30px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; border-radius: 25px; font-size: 16px; cursor: pointer; }
     .quick-actions { padding: 20px; background: #f8f9fa; border-top: 1px solid #e9ecef; display: flex; flex-wrap: wrap; gap: 10px; }
-    .quick-action-btn { padding: 10px 20px; background: white; border: 2px solid #667eea; color: #667eea; border-radius: 20px; cursor: pointer; transition: all 0.3s; font-size: 14px; }
+    .quick-action-btn { padding: 10px 20px; background: white; border: 2px solid #667eea; color: #667eea; border-radius: 20px; cursor: pointer; font-size: 14px; }
     .quick-action-btn:hover { background: #667eea; color: white; }
     .role-selector { padding: 20px; background: white; border-bottom: 1px solid #e9ecef; display: flex; gap: 15px; justify-content: center; }
-    .role-btn { padding: 12px 30px; border: 2px solid #e9ecef; background: white; border-radius: 25px; cursor: pointer; transition: all 0.3s; font-size: 16px; font-weight: 600; }
+    .role-btn { padding: 12px 30px; border: 2px solid #e9ecef; background: white; border-radius: 25px; cursor: pointer; font-size: 16px; font-weight: 600; }
     .role-btn.active { border-color: #667eea; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; }
-    .markdown-body { line-height: 1.6; }
-    .markdown-body h1, .markdown-body h2, .markdown-body h3 { margin: 15px 0 10px; color: #333; }
-    .markdown-body h1 { font-size: 1.8em; }
-    .markdown-body h2 { font-size: 1.5em; }
-    .markdown-body h3 { font-size: 1.3em; }
+    .markdown-body h3 { margin: 15px 0 10px; color: #333; }
+    .markdown-body h4 { margin: 12px 0 8px; color: #555; }
     .markdown-body p { margin-bottom: 10px; }
     .markdown-body ul, .markdown-body ol { margin-left: 20px; margin-bottom: 10px; }
     .markdown-body li { margin-bottom: 5px; }
     .markdown-body table { width: 100%; border-collapse: collapse; margin: 15px 0; background: white; }
     .markdown-body th, .markdown-body td { padding: 12px; border: 1px solid #e9ecef; text-align: left; }
     .markdown-body th { background: #f8f9fa; font-weight: 600; }
-    .markdown-body code { background: #f8f9fa; padding: 2px 6px; border-radius: 4px; font-family: 'Courier New', monospace; }
+    .markdown-body code { background: #2d2d2d; color: #f8f8f2; padding: 2px 6px; border-radius: 4px; font-family: monospace; }
     .markdown-body pre { background: #2d2d2d; color: #f8f8f2; padding: 15px; border-radius: 8px; overflow-x: auto; margin: 15px 0; }
-    .markdown-body pre code { background: none; color: inherit; }
-    .markdown-body blockquote { border-left: 4px solid #667eea; padding-left: 15px; margin: 15px 0; color: #666; }
+    .markdown-body pre code { background: none; color: inherit; padding: 0; }
     .markdown-body .warning { background: #fff3cd; border-left: 4px solid #ffc107; padding: 15px; margin: 15px 0; border-radius: 4px; }
-    .markdown-body .success { background: #d4edda; border-left: 4px solid #28a745; padding: 15px; margin: 15px 0; border-radius: 4px; }
     .welcome-card { background: white; padding: 30px; border-radius: 15px; text-align: center; margin: 20px 0; }
     .welcome-card h2 { color: #667eea; margin-bottom: 15px; }
     .welcome-card p { color: #666; margin-bottom: 20px; }
@@ -77,370 +70,96 @@
               <span class="mode-badge" id="modeBadge">未选择角色</span>
               <h2>欢迎使用 SSO 项目指导 Agent！</h2>
               <p>请先选择您的角色，我会提供针对性的指导</p>
-              <p style="font-size: 14px; color: #999;">上方选择 PM / AE / 问题排查</p>
+              <p style="font-size: 14px; color: #999;">点击上方按钮选择 PM / AE / 问题排查</p>
             </div>
           </div>
         </div>
       </div>
       
       <div class="quick-actions" id="quickActions" style="display: none;">
-        <!-- 动态生成快捷操作 -->
       </div>
       
       <div class="input-area">
-        <input type="text" id="userInput" placeholder="输入您的问题（或使用下方快捷按钮）..." onkeypress="if(event.keyCode===13)sendMessage()">
+        <input type="text" id="userInput" placeholder="输入问题或使用下方快捷按钮..." onkeypress="if(event.keyCode===13)sendMessage()">
         <button onclick="sendMessage()" id="sendBtn">发送</button>
       </div>
     </div>
   </div>
 
   <script>
-    let currentRole = null;
+    var currentRole = null;
     
-    const ANSWERS = {
-      '查看 12 问清单': `### 📋 SSO 设计必答问题 12 问
+    var ANSWERS = {
+      '查看 12 问清单': '### SSO 设计必答问题 12 问\n\n| 序号 | 问题 | 选项/说明 |\n|------|------|----------|\n| 1 | 对接主体 | 主站=认证方，子站=依赖方 |\n| 2 | 网络环境 | 内网/外网？ |\n| 3 | 是否跨域 | 域名/端口一致=同源 |\n| 4 | 相关功能 | 免登？数据同步？ |\n| 5 | 免登场景 | iframe 嵌套还是跳转？ |\n| 6 | 获取 Token 方式 | URL 参数/Header/Cookie |\n| 7 | 跳转地址 | 固定地址还是动态 return_url |\n| 8 | 认证方式 | JWT/OAuth2/SAML/其他 |\n| 9 | 登录策略 | 匹配/创建新用户 |\n| 10 | 登出策略 | 全局/局部/被动登出 |\n| 11 | 数据同步 | 实时/定时/被动 |\n| 12 | 对接量级 | 用户量和并发量 |\n\n把这 12 个问题发给客户填写！',
 
-| 序号 | 问题 | 选项/说明 |
-|------|------|----------|
-| 1 | 对接主体 | 主站=认证方，子站=依赖方 |
-| 2 | 网络环境 | 内网/外网？影响调试便捷性 |
-| 3 | 是否跨域 | 域名/端口一致=同源，否则需解决跨域 |
-| 4 | 相关功能 | 免登=基础，数据同步=进阶 |
-| 5 | 免登场景 | iframe=页面嵌套，跳转=新窗口 |
-| 6 | 获取 Token 方式 | URL 参数、Header、Cookie |
-| 7 | 跳转地址 | 固定地址还是动态 return_url？ |
-| 8 | 认证方式 | 无需认证/JWT/OAuth2.0/其他？ |
-| 9 | 登录策略 | 匹配不上=拒绝/创建新用户 |
-| 10 | 登出策略 | 全局登出/局部登出/被动登出？ |
-| 11 | 数据同步 | 实时=API，定时=批量，被动=跳转时创建 |
-| 12 | 对接量级 | 预计用户量和并发量？ |
+      '需求质量检查': '### 需求质量检查清单\n\n- [ ] 明确对接主体（主站/子站）\n- [ ] 明确网络环境（内网/外网、是否跨域）\n- [ ] 明确免登场景（iframe/跳转）\n- [ ] 明确数据同步需求\n- [ ] 明确认证方式\n- [ ] 获取第三方对接文档\n- [ ] 明确用户匹配策略\n- [ ] 明确登出策略\n\n都确认后发给我检查！',
 
-把这 12 个问题发给客户填写，收齐后发给我帮你检查！`,
+      '常见风险提示': '### SSO 项目常见风险\n\n**1. 第三方配合度低**\n- 对策：提前明确对接窗口，拉群沟通\n\n**2. 需求范围蔓延**\n- 对策：需求签字确认，变更走流程\n\n**3. 客户期望过高**\n- 对策：提前说明能力边界\n\n**4. 网络环境复杂**\n- 对策：提前确认，预留调试时间\n\n**5. 版本不支持**\n- 对策：检查 license，需 EOD 及以上',
 
-      '需求质量检查': `### ✅ 需求质量检查清单
+      '需求文档模板': '### SSO 需求调研表\n\n项目名称：___________\n客户名称：___________\n对接系统：___________\n\n【对接主体】我们是：主站 / 子站\n\n【网络环境】内网 / 外网，是否跨域：是 / 否\n\n【功能需求】免登：是/否，数据同步：是/否\n\n【认证方式】JWT / OAuth2.0 / SAML / 其他\n\n【用户策略】匹配不上：拒绝 / 创建新用户\n\n【项目信息】用户量：___，并发量：___，上线时间：___',
 
-请确认以下项目：
+      '场景识别指南': '### 对接场景识别\n\n**场景 A：双 smardaten 平台**\n- 方案：配置实现，0 二开，0.5 人天\n\n**场景 B：smardaten 为主站**\n- 方案：配置实现，0.2 人天\n\n**场景 C：smardaten 为子站**\n- 方案：评估实现（配置/二开），1-5 人天\n\n**场景 D：简单免登**\n- 方案：约定加密规则，1-3 人天\n\n你是哪种场景？',
 
-- [ ] 明确对接主体（主站/子站）
-- [ ] 明确网络环境（内网/外网、是否跨域）
-- [ ] 明确免登场景（iframe/跳转）
-- [ ] 明确数据同步需求
-- [ ] 明确认证方式
-- [ ] 获取第三方对接文档（如有）
-- [ ] 明确用户匹配策略
-- [ ] 明确登出策略
+      '配置实现方案': '### 配置实现方案\n\n**SSO 配置路径：** 系统配置 → 安全配置 → SSO 配置\n\n**配置项：**\n- SSO 类型：common/OAuth 2.0\n- 启用 SSO：是（sys_property=1）\n- Token 获取：URL 参数/服务编排\n- 用户匹配：工号/账号/邮箱\n- 登录策略：匹配/创建\n- 登出策略：全局/局部\n\n需要服务编排示例吗？',
 
-**如果以上都确认了，把需求文档发给我，我帮你做最终检查！**`,
+      '二开方案评估': '### 二开方案评估\n\n**何时二开：**\n- 协议不支持（SAML/私有）：3-5 人天\n- Token 获取复杂：2-3 人天\n- 用户匹配复杂：2-3 人天\n\n**二开位置：**\n1. 前端 - postMessage 监听\n2. 后端 - 自定义 REST 服务\n3. 服务编排 - 自定义逻辑\n\n建议：优先服务编排！',
 
-      '常见风险提示': `### ⚠️ SSO 项目常见风险
+      '服务编排配置': '### 服务编排配置示例\n\n**Token 获取：**\n1. REST 服务：调用第三方 token 接口\n2. 脚本节点：解析响应\n3. 返回：{token, expiresIn}\n\n**用户匹配：**\n1. 查询用户表\n2. 条件：third_party_id = 输入\n3. 存在则返回 ID，不存在则创建\n\n需要详细流程图吗？',
 
-**1. 第三方配合度低**
-- 表现：响应慢、文档不提供、接口不开放
-- 对策：提前明确对接窗口，拉群沟通，升级协调
+      '联调检查清单': '### 联调检查清单\n\n**配置检查：**\n- [ ] SSO 配置已启用\n- [ ] Token 接口已配置\n- [ ] 用户匹配字段已配置\n\n**网络检查：**\n- [ ] 接口可访问\n- [ ] 防火墙已放行\n- [ ] HTTPS 证书有效\n\n**日志检查：**\n- [ ] 查看 sdata-run.log\n- [ ] 搜索 ===/sso/login\n- [ ] 无报错',
 
-**2. 需求范围蔓延**
-- 表现：客户不断加需求
-- 对策：需求签字确认，变更走流程
+      '跳转到登录页': '### 问题：跳转到登录页\n\n**排查步骤：**\n\n1. F12 → Network → Preserve log\n2. 检查是否请求：/querySSOConfig、/login、/user\n3. /login 未触发 → 检查 Token 是否传递\n4. 接口报错 → 查看错误信息\n\n**常见原因：**\n1. 跨域问题\n2. SSO 配置未开启\n3. 链接未拼接 Token\n4. license 为 EOB',
 
-**3. 客户期望过高**
-- 表现：认为 SSO 应该"自动"完成
-- 对策：提前说明能力边界，管理期望
+      '数据库没有用户': '### 问题：数据库没有当前用户\n\n**解决方法：**\n\n1. 查询映射表：\n   SELECT * FROM t_sdata_user_mapping WHERE third_party_id = \'ID\';\n\n2. 清理脏数据：\n   DELETE FROM t_sdata_user_mapping WHERE third_party_id = \'ID\';\n\n3. 重新登录\n\n4. 检查用户创建配置',
 
-**4. 网络环境复杂**
-- 表现：联调时才发现网络不通
-- 对策：提前确认网络环境，预留调试时间
+      'Token 验证失败': '### 问题：Token 验证失败\n\n**排查步骤：**\n\n1. 查看日志：\n   tail -f sdata-run.log | grep ===/sso/login\n\n2. 测试网络：\n   telnet third-party.com 443\n\n3. 检查问题：\n   - 连接超时 → 联系运维\n   - 401/403 → Token 无效\n   - 500 → 接口报错',
 
-**5. 版本不支持**
-- 表现：EOB 版本不支持 SSO
-- 对策：提前检查 license 版本，需 EOD 及以上`,
+      '版本不支持': '### 问题：版本不支持 SSO\n\n**检查方法：**\n\nF12 控制台输入：\nwindow.configuration.licenseMode\n\n**版本说明：**\n- EOB：不支持 ❌\n- EOD：支持 ✅\n- EOC：支持 ✅\n\n显示 EOB 需联系 PM 升级 license',
 
-      '需求文档模板': `### 📄 SSO 需求调研表（模板）
-
-\`\`\`
-项目名称：___________
-客户名称：___________
-对接系统：___________
-
-【对接主体】
-我们是：□ 主站（认证方） □ 子站（依赖方）
-
-【网络环境】
-部署环境：□ 内网 □ 外网
-是否跨域：□ 是 □ 否
-
-【功能需求】
-需要免登：□ 是 □ 否
-需要数据同步：□ 是 □ 否
-
-【认证方式】
-认证协议：□ JWT □ OAuth2.0 □ SAML □ 其他_______
-
-【用户策略】
-匹配不上：□ 拒绝登录 □ 自动创建新用户
-
-【项目信息】
-预计用户量：_______
-预计并发量：_______
-上线时间：_______
-\`\`\`
-
-复制这个模板发给客户填写！`,
-
-      '场景识别指南': `### 🎯 对接场景识别
-
-**场景 A：双 smardaten 平台**
-- 特征：对接双方都是 smardaten 系统
-- 方案：✅ 配置实现，0 二开
-- 工作量：0.5 人天
-
-**场景 B：smardaten 为主站**
-- 特征：smardaten 负责认证，第三方嵌入
-- 方案：✅ 配置实现，0.2 人天
-
-**场景 C：smardaten 为子站**
-- 特征：第三方负责认证，smardaten 被嵌入
-- 方案：⚠️ 评估实现方案（配置/二开）
-- 工作量：1-5 人天
-
-**场景 D：简单免登**
-- 特征：不区分主站/子站，仅传递用户信息
-- 方案：⚠️ 需双方约定加密规则
-- 工作量：1-3 人天
-
-请告诉我你属于哪种场景？`,
-
-      '配置实现方案': `### ⚙️ 配置实现方案（推荐优先）
-
-**SSO 标准配置路径：**
-系统配置 → 安全配置 → SSO 配置
-
-**配置项说明：**
-
-| 配置项 | 配置值 | 说明 |
-|--------|--------|------|
-| SSO 类型 | common/OAuth 2.0 | 根据第三方协议选择 |
-| 是否启用 SSO | 是 | sys_property=1 |
-| Token 获取方式 | URL 参数/服务编排 | 简单场景用 URL，复杂用服务编排 |
-| 用户匹配字段 | 工号/账号/邮箱 | 根据第三方提供的字段 |
-| 登录策略 | 匹配/创建 | 匹配不上拒绝还是创建新用户 |
-| 登出策略 | 全局/局部 | 是否同步登出其他系统 |
-
-需要我帮你设计具体的服务编排流程吗？`,
-
-      '二开方案评估': `### 💻 二开方案评估
-
-**何时需要二开？**
-
-| 情况 | 说明 | 工作量 |
-|------|------|--------|
-| 协议不支持 | 第三方使用 SAML/私有协议 | 3-5 人天 |
-| Token 获取复杂 | 需要多步调用、复杂签名 | 2-3 人天 |
-| 用户匹配复杂 | 需要跨系统查询、复杂逻辑 | 2-3 人天 |
-
-**二开位置：**
-
-1. **前端二开** - postMessage 监听、自定义跳转
-2. **后端二开** - 自定义 REST 服务
-3. **服务编排扩展** - 自定义逻辑、加密解密
-
-**建议：优先尝试服务编排，最后考虑代码二开！**`,
-
-      '服务编排配置': `### 🔧 服务编排配置示例
-
-**示例 1：Token 获取服务编排**
-
-\`\`\`
-输入：{ code: 'xxx' }
-↓
-REST 服务节点
-  URL: https://third-party.com/oauth/token
-  Method: POST
-↓
-脚本节点（解析响应）
-  const resp = JSON.parse(input.response);
-  return { token: resp.access_token };
-↓
-输出：{ token: 'xxx', expiresIn: 7200 }
-\`\`\`
-
-**示例 2：用户匹配服务编排**
-
-\`\`\`
-输入：{ thirdPartyUserId: '123' }
-↓
-查询用户节点
-  表：t_sdata_user
-  条件：third_party_id = input.thirdPartyUserId
-↓
-判断节点
-  如果 用户存在 → 返回用户 ID
-  如果 用户不存在 → 创建用户
-↓
-输出：{ userId: 'xxx', created: true/false }
-\`\`\``,
-
-      '联调检查清单': `### ✅ 联调检查清单
-
-**配置检查：**
-- [ ] SSO 配置已启用（sys_property=1）
-- [ ] Token 获取接口已配置
-- [ ] 用户匹配字段已配置
-
-**网络检查：**
-- [ ] 第三方接口可访问
-- [ ] 防火墙已放行
-- [ ] HTTPS 证书有效
-
-**功能测试：**
-- [ ] 跳转链接拼接 Token
-- [ ] Token 验证接口返回正确
-- [ ] 用户能成功创建/匹配
-- [ ] 本地会话创建成功
-
-**日志检查：**
-- [ ] 查看 /tomcat/logs/sdata/sdata-run.log
-- [ ] 搜索 ===/sso/login
-- [ ] 无报错信息`,
-
-      '跳转到登录页': `### 问题：跳转到登录页
-
-**按以下步骤排查：**
-
-**第 1 步：F12 查看网络请求**
-1. 按 F12 打开浏览器控制台
-2. 切换到 Network 标签，勾选 Preserve log
-3. 重新尝试单点登录
-
-**第 2 步：检查关键接口**
-看是否请求了以下接口：
-- \`/querySSOConfig\` - SSO 配置查询
-- \`/login\` - 登录接口
-- \`/user\` - 用户信息接口
-
-**常见原因：**
-1. 跨域问题（域名或端口不一致）
-2. SSO 配置未开启（sys_property=0）
-3. 链接中未拼接 Token
-4. license 版本为 EOB（不支持 SSO）`,
-
-      '数据库没有用户': `### 问题：数据库没有当前用户
-
-**解决方法：**
-
-**第 1 步：检查用户映射表**
-\`\`\`sql
-SELECT * FROM t_sdata_user_mapping 
-WHERE third_party_id = '第三方用户 ID';
-\`\`\`
-
-**第 2 步：清理脏数据**
-\`\`\`sql
-DELETE FROM t_sdata_user_mapping 
-WHERE third_party_id = '第三方用户 ID';
-\`\`\`
-
-**第 3 步：重新尝试单点登录**
-清理后重新登录，系统会重新创建用户。`,
-
-      'Token 验证失败': `### 问题：Token 校验失败/连接超时
-
-**按以下步骤排查：**
-
-**第 1 步：查看日志**
-\`\`\`bash
-tail -f /tomcat/logs/sdata/sdata-run.log | grep "===/sso/login"
-\`\`\`
-
-**第 2 步：网络连通性测试**
-\`\`\`bash
-telnet third-party.com 443
-\`\`\`
-
-**常见问题：**
-- 连接超时 → 联系运维打通网络
-- 401/403 → Token 无效
-- 500 → 接口报错
-- SSL 错误 → 检查 HTTPS 证书`,
-
-      '版本不支持': `### 问题：版本不支持 SSO
-
-**检查方法：**
-
-在浏览器控制台输入：
-\`\`\`javascript
-window.configuration.licenseMode
-\`\`\`
-
-**版本说明：**
-
-| 显示值 | 说明 | 是否支持 SSO |
-|--------|------|-------------|
-| EOB | 基础版 | ❌ 不支持 |
-| EOD | 标准版 | ✅ 支持 |
-| EOC | 企业版 | ✅ 支持 |
-
-**如果显示 EOB：** 联系 PM 更换 license，升级到 EOD 及以上版本。`,
-
-      '跨域问题': `### 问题：跨域问题（iframe 无法正常免登）
-
-**问题表现：**
-- iframe 加载后仍然显示登录页
-- 控制台报跨域错误
-
-**解决方案：**
-
-**方案 1：配置同源（推荐）**
-联系运维将客户网站地址与 smardaten 地址配置成同源：
-- 域名保持一致（如都用 company.com）
-- 端口保持一致（如都用 443）
-
-**方案 2：使用 postMessage（需二开）**
-如果无法配置同源，使用 postMessage 跨域通信。
-
-**最佳实践：优先方案 1，配置同源最稳定！**`
+      '跨域问题': '### 问题：跨域问题\n\n**表现：**\n- iframe 加载后显示登录页\n- 控制台报跨域错误\n\n**解决方案：**\n\n**方案 1（推荐）：** 配置同源\n- 域名保持一致\n- 端口保持一致\n\n**方案 2：** postMessage 跨域通信（需二开）\n\n最佳实践：优先配置同源！'
     };
     
     function selectRole(role) {
       currentRole = role;
       
-      const roleData = {
-        pm: {
-          name: 'PM',
-          quickActions: ['查看 12 问清单', '需求质量检查', '常见风险提示', '需求文档模板']
-        },
-        ae: {
-          name: 'AE',
-          quickActions: ['场景识别指南', '配置实现方案', '二开方案评估', '服务编排配置', '联调检查清单']
-        },
-        debug: {
-          name: '问题排查',
-          quickActions: ['跳转到登录页', '数据库没有用户', 'Token 验证失败', '版本不支持', '跨域问题']
-        }
+      var roleData = {
+        pm: { name: 'PM', quickActions: ['查看 12 问清单', '需求质量检查', '常见风险提示', '需求文档模板'] },
+        ae: { name: 'AE', quickActions: ['场景识别指南', '配置实现方案', '二开方案评估', '服务编排配置', '联调检查清单'] },
+        debug: { name: '问题排查', quickActions: ['跳转到登录页', '数据库没有用户', 'Token 验证失败', '版本不支持', '跨域问题'] }
       };
       
-      const data = roleData[role];
+      var data = roleData[role];
       
-      document.querySelectorAll('.role-btn').forEach(btn => {
-        btn.classList.toggle('active', btn.dataset.role === role);
-      });
+      var buttons = document.querySelectorAll('.role-btn');
+      for (var i = 0; i < buttons.length; i++) {
+        buttons[i].classList.toggle('active', buttons[i].getAttribute('data-role') === role);
+      }
       
-      document.getElementById('modeBadge').textContent = `${data.name} 模式`;
+      document.getElementById('modeBadge').textContent = data.name + ' 模式';
       
-      const quickActions = document.getElementById('quickActions');
+      var quickActions = document.getElementById('quickActions');
       quickActions.style.display = 'flex';
-      quickActions.innerHTML = data.quickActions.map(action => 
-        `<button class="quick-action-btn" onclick="sendQuickAction('${action}')">${action}</button>`
-      ).join('');
+      quickActions.innerHTML = '';
+      for (var j = 0; j < data.quickActions.length; j++) {
+        var btn = document.createElement('button');
+        btn.className = 'quick-action-btn';
+        btn.textContent = data.quickActions[j];
+        btn.onclick = (function(action) {
+          return function() { sendQuickAction(action); };\
+        })(data.quickActions[j]);
+        quickActions.appendChild(btn);
+      }
       
-      addMessage(`你好！我是 SSO 项目指导 Agent 🎯\n\n我是${data.name === 'PM' ? '👔 PM' : data.name === 'AE' ? '💻 AE' : '🔍 问题排查'}助手。\n\n请点击下方的快捷按钮，我会提供完整的指导方案！`, 'bot');
+      var welcomeMsg = '你好！我是 SSO 项目指导 Agent！\\n\\n我是' + (data.name === 'PM' ? '👔 PM' : data.name === 'AE' ? '💻 AE' : '🔍 问题排查') + '助手。\\n\\n请点击下方的快捷按钮，我会提供完整的指导方案！';
+      addMessage(welcomeMsg, 'bot');
     }
     
     function addMessage(content, type) {
-      const messagesDiv = document.getElementById('chatMessages');
-      const messageDiv = document.createElement('div');
-      messageDiv.className = `message ${type}`;
+      var messagesDiv = document.getElementById('chatMessages');
+      var messageDiv = document.createElement('div');
+      messageDiv.className = 'message ' + type;
       
-      const contentDiv = document.createElement('div');
+      var contentDiv = document.createElement('div');
       contentDiv.className = 'message-content markdown-body';
       contentDiv.innerHTML = simpleMarkdown(content);
       
@@ -450,87 +169,4 @@ window.configuration.licenseMode
     }
     
     function simpleMarkdown(text) {
-      if (!text) return '';
-      
-      let html = text
-        .replace(/^### (.*$)/gim, '<h3>$1</h3>')
-        .replace(/^## (.*$)/gim, '<h2>$1</h2>')
-        .replace(/^# (.*$)/gim, '<h1>$1</h1>')
-        .replace(/\*\*(.*?)\*\*/gim, '<strong>$1</strong>')
-        .replace(/^- (.*$)/gim, '<li>$1</li>')
-        .replace(/^\d+\. (.*$)/gim, '<li>$1</li>')
-        .replace(/\n/g, '<br>')
-        .replace(/\\\`/g, '`');
-      
-      // 表格处理
-      html = html.replace(/\\n\|(.*)\|/g, (match) => {
-        const cells = match.split('|').filter(c => c.trim());
-        if (cells.length > 0) {
-          return '<br><table><tr>' + cells.map(c => `<td>${c.trim()}</td>`).join('') + '</tr></table>';
-        }
-        return match;
-      });
-      
-      // 代码块处理
-      html = html.replace(/\\n\\\`\\\`\\\`([\\s\\S]*?)\\\`\\\`\\\`/g, '<br><pre><code>$1</code></pre>');
-      
-      return html;
-    }
-    
-    function sendMessage() {
-      const input = document.getElementById('userInput');
-      const message = input.value.trim();
-      if (!message) return;
-      
-      if (!currentRole) {
-        addMessage('请先选择角色（PM / AE / 问题排查）', 'bot');
-        return;
-      }
-      
-      addMessage(message, 'user');
-      input.value = '';
-      
-      // 查找匹配的答案
-      let answer = null;
-      for (const [key, value] of Object.entries(ANSWERS)) {
-        if (message.includes(key) || key.includes(message)) {
-          answer = value;
-          break;
-        }
-      }
-      
-      if (answer) {
-        setTimeout(() => addMessage(answer, 'bot'), 300);
-      } else {
-        setTimeout(() => addMessage(`收到您的问题：**${message}**\n\n建议点击上方的快捷按钮获取完整答案，或尝试以下相关问题：\n\n` + Object.keys(ANSWERS).slice(0, 5).map(k => `- ${k}`).join('\\n'), 'bot'), 300);
-      }
-    }
-    
-    function sendQuickAction(action) {
-      const answer = ANSWERS[action];
-      if (answer) {
-        addMessage(action, 'user');
-        setTimeout(() => addMessage(answer, 'bot'), 300);
-      }
-    }
-    
-    // 初始化 - 确保 DOM 加载完成后绑定事件
-    function init() {
-      console.log('SSO Guide initialized');
-      document.querySelectorAll('.role-btn').forEach(btn => {
-        btn.addEventListener('click', function() {
-          console.log('Role selected:', this.dataset.role);
-          selectRole(this.dataset.role);
-        });
-      });
-    }
-    
-    // 页面加载完成后初始化
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', init);
-    } else {
-      init();
-    }
-  </script>
-</body>
-</html>
+      if (!text) return '';\n      var html = text\n        .replace(/^### (.*$)/gm, '<h3>$1</h3>')\n        .replace(/^#### (.*$)/gm, '<h4>$1</h4>')\n        .replace(/\\*\\*(.*?)\\*\\*/g, '<strong>$1</strong>')\n        .replace(/^- (.*$)/gm, '<li>$1</li>')\n        .replace(/^\\d+\\. (.*$)/gm, '<li>$1</li>')\n        .replace(/\\n/g, '<br>');\n      \n      // 表格处理\n      var lines = html.split('<br>');\n      var inTable = false;\n      var tableRows = [];\n      var result = [];\n      \n      for (var i = 0; i < lines.length; i++) {\n        var line = lines[i];\n        if (line.indexOf('|') === 0 && line.lastIndexOf('|') === line.length - 1) {\n          if (!inTable) {\n            inTable = true;\n            tableRows = [];\n          }\n          var cells = line.split('|').filter(function(c) { return c.trim(); });\n          if (cells.length > 0) {\n            tableRows.push('<tr>' + cells.map(function(c) { return '<td>' + c.trim() + '</td>'; }).join('') + '</tr>');\n          }\n        } else {\n          if (inTable && tableRows.length > 0) {\n            result.push('<table>' + tableRows.join('') + '</table>');\n            inTable = false;\n          }\n          result.push(line);\n        }\n      }\n      \n      if (inTable && tableRows.length > 0) {\n        result.push('<table>' + tableRows.join('') + '</table>');\n      }\n      \n      return result.join('<br>');\n    }\n    \n    function sendMessage() {\n      var input = document.getElementById('userInput');\n      var message = input.value.trim();\n      if (!message) return;\n      \n      if (!currentRole) {\n        addMessage('请先选择角色（PM / AE / 问题排查）', 'bot');\n        return;\n      }\n      \n      addMessage(message, 'user');\n      input.value = '';\n      \n      var answer = null;\n      for (var key in ANSWERS) {\n        if (message.indexOf(key) >= 0 || key.indexOf(message) >= 0) {\n          answer = ANSWERS[key];\n          break;\n        }\n      }\n      \n      if (answer) {\n        setTimeout(function() { addMessage(answer, 'bot'); }, 300);\n      } else {\n        setTimeout(function() { addMessage('收到问题：' + message + '\\n\\n建议点击快捷按钮获取答案！', 'bot'); }, 300);\n      }\n    }\n    \n    function sendQuickAction(action) {\n      var answer = ANSWERS[action];\n      if (answer) {\n        addMessage(action, 'user');\n        setTimeout(function() { addMessage(answer, 'bot'); }, 300);\n      }\n    }\n    \n    // 初始化\n    window.onload = function() {\n      console.log('SSO Guide initialized');\n      var buttons = document.querySelectorAll('.role-btn');\n      for (var i = 0; i < buttons.length; i++) {\n        buttons[i].onclick = (function(btn) {\n          return function() {\n            console.log('Role selected:', btn.getAttribute('data-role'));\n            selectRole(btn.getAttribute('data-role'));\n          };\n        })(buttons[i]);\n      }\n    };\n  </script>\n</body>\n</html>
