@@ -11,49 +11,58 @@
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; padding: 20px; }
     .container { max-width: 900px; margin: 0 auto; }
-    .header { text-align: center; color: white; margin-bottom: 30px; }
-    .header h1 { font-size: 2.5em; margin-bottom: 10px; }
-    .header p { font-size: 1.1em; opacity: 0.9; }
+    .header { text-align: center; color: white; margin-bottom: 20px; }
+    .header h1 { font-size: 2.2em; margin-bottom: 5px; }
+    .header p { font-size: 0.95em; opacity: 0.9; margin-bottom: 10px; }
+    .kb-links { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
+    .kb-link { color: white; text-decoration: none; padding: 5px 12px; background: rgba(255,255,255,0.2); border-radius: 15px; font-size: 12px; }
+    .kb-link:hover { background: rgba(255,255,255,0.35); }
     .chat-container { background: white; border-radius: 20px; box-shadow: 0 20px 60px rgba(0,0,0,0.3); overflow: hidden; }
-    .chat-messages { height: 500px; overflow-y: auto; padding: 30px; background: #f8f9fa; }
-    .message { margin-bottom: 20px; display: flex; }
+    .chat-messages { height: 480px; overflow-y: auto; padding: 25px; background: #f8f9fa; }
+    .message { margin-bottom: 18px; display: flex; }
     .message.user { justify-content: flex-end; }
-    .message-content { max-width: 70%; padding: 15px 20px; border-radius: 18px; line-height: 1.6; }
-    .message.bot .message-content { background: white; border: 1px solid #e9ecef; border-bottom-left-radius: 4px; }
+    .message-content { max-width: 75%; padding: 12px 16px; border-radius: 16px; line-height: 1.65; font-size: 14px; }
+    .message.bot .message-content { background: white; border: 1px solid #e9ecef; border-bottom-left-radius: 4px; white-space: pre-wrap; }
     .message.user .message-content { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border-bottom-right-radius: 4px; }
-    .input-area { padding: 20px; background: white; border-top: 1px solid #e9ecef; display: flex; gap: 10px; }
-    .input-area input { flex: 1; padding: 15px 20px; border: 2px solid #e9ecef; border-radius: 25px; font-size: 16px; outline: none; }
+    .input-area { padding: 16px; background: white; border-top: 1px solid #e9ecef; display: flex; gap: 10px; }
+    .input-area input { flex: 1; padding: 12px 16px; border: 2px solid #e9ecef; border-radius: 25px; font-size: 15px; outline: none; }
     .input-area input:focus { border-color: #667eea; }
-    .input-area button { padding: 15px 30px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; border-radius: 25px; font-size: 16px; cursor: pointer; }
-    .quick-actions { padding: 20px; background: #f8f9fa; border-top: 1px solid #e9ecef; display: flex; flex-wrap: wrap; gap: 10px; }
-    .quick-action-btn { padding: 10px 20px; background: white; border: 2px solid #667eea; color: #667eea; border-radius: 20px; cursor: pointer; font-size: 14px; }
+    .input-area button { padding: 12px 24px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; border-radius: 25px; font-size: 15px; cursor: pointer; }
+    .quick-actions { padding: 16px; background: #f8f9fa; border-top: 1px solid #e9ecef; display: flex; flex-wrap: wrap; gap: 8px; }
+    .quick-action-btn { padding: 8px 16px; background: white; border: 2px solid #667eea; color: #667eea; border-radius: 20px; cursor: pointer; font-size: 13px; transition: all 0.2s; }
     .quick-action-btn:hover { background: #667eea; color: white; }
-    .role-selector { padding: 20px; background: white; border-bottom: 1px solid #e9ecef; display: flex; gap: 15px; justify-content: center; }
-    .role-btn { padding: 12px 30px; border: 2px solid #e9ecef; background: white; border-radius: 25px; cursor: pointer; font-size: 16px; font-weight: 600; }
+    .role-selector { padding: 16px; background: white; border-bottom: 1px solid #e9ecef; display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+    .role-btn { padding: 10px 20px; border: 2px solid #e9ecef; background: white; border-radius: 25px; cursor: pointer; font-size: 14px; font-weight: 600; transition: all 0.2s; }
     .role-btn.active { border-color: #667eea; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; }
-    .markdown-body h3 { margin: 15px 0 10px; color: #333; }
-    .markdown-body h4 { margin: 12px 0 8px; color: #555; }
-    .markdown-body p { margin-bottom: 10px; }
-    .markdown-body ul, .markdown-body ol { margin-left: 20px; margin-bottom: 10px; }
-    .markdown-body li { margin-bottom: 5px; }
-    .markdown-body table { width: 100%; border-collapse: collapse; margin: 15px 0; background: white; }
-    .markdown-body th, .markdown-body td { padding: 12px; border: 1px solid #e9ecef; text-align: left; }
+    .markdown-body h3 { margin: 12px 0 8px; color: #333; font-size: 15px; }
+    .markdown-body h4 { margin: 10px 0 6px; color: #555; font-size: 14px; }
+    .markdown-body p { margin-bottom: 8px; }
+    .markdown-body ul, .markdown-body ol { margin-left: 18px; margin-bottom: 8px; }
+    .markdown-body li { margin-bottom: 4px; }
+    .markdown-body table { width: 100%; border-collapse: collapse; margin: 10px 0; background: white; font-size: 13px; }
+    .markdown-body th, .markdown-body td { padding: 8px; border: 1px solid #e9ecef; text-align: left; }
     .markdown-body th { background: #f8f9fa; font-weight: 600; }
-    .markdown-body code { background: #2d2d2d; color: #f8f8f2; padding: 2px 6px; border-radius: 4px; font-family: monospace; }
-    .markdown-body pre { background: #2d2d2d; color: #f8f8f2; padding: 15px; border-radius: 8px; overflow-x: auto; margin: 15px 0; }
+    .markdown-body code { background: #2d2d2d; color: #f8f8f2; padding: 2px 6px; border-radius: 4px; font-family: monospace; font-size: 12px; }
+    .markdown-body pre { background: #2d2d2d; color: #f8f8f2; padding: 12px; border-radius: 8px; overflow-x: auto; margin: 10px 0; }
     .markdown-body pre code { background: none; color: inherit; padding: 0; }
-    .markdown-body .warning { background: #fff3cd; border-left: 4px solid #ffc107; padding: 15px; margin: 15px 0; border-radius: 4px; }
-    .welcome-card { background: white; padding: 30px; border-radius: 15px; text-align: center; margin: 20px 0; }
-    .welcome-card h2 { color: #667eea; margin-bottom: 15px; }
-    .welcome-card p { color: #666; margin-bottom: 20px; }
-    .mode-badge { display: inline-block; padding: 5px 15px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border-radius: 15px; font-size: 12px; font-weight: 600; margin-bottom: 15px; }
+    .markdown-body .warning { background: #fff3cd; border-left: 4px solid #ffc107; padding: 12px; margin: 10px 0; border-radius: 4px; }
+    .welcome-card { background: white; padding: 25px; border-radius: 15px; text-align: center; margin: 15px 0; }
+    .welcome-card h2 { color: #667eea; margin-bottom: 10px; font-size: 18px; }
+    .welcome-card p { color: #666; margin-bottom: 15px; font-size: 14px; }
+    .mode-badge { display: inline-block; padding: 4px 12px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border-radius: 15px; font-size: 11px; font-weight: 600; margin-bottom: 12px; }
+    .source-tag { display: inline-block; padding: 2px 8px; background: #e8f5e9; color: #2e7d32; border-radius: 10px; font-size: 10px; margin-top: 8px; }
   </style>
 </head>
 <body>
   <div class="container">
     <div class="header">
       <h1>🎯 SSO 项目指导 Agent</h1>
-      <p>帮助 PM 和 AE 高效完成 SSO 单点登录项目实施</p>
+      <p>帮助 PM 和 AE 高效完成 SSO 单点登录项目实施 | 基于 SSO 能力建设知识库</p>
+      <div class="kb-links">
+        <a class="kb-link" href="https://smartdata.feishu.cn/docx/DECudH1efohneNxm5wOc4ZNjnXy" target="_blank">📖 飞书知识库</a>
+        <a class="kb-link" href="https://feishu.cn/docx/SXzGdMJV7o93J6xwhakcFdT7nzc" target="_blank">📘 技术文档</a>
+        <a class="kb-link" href="https://github.com/newtip/sso-guide" target="_blank">🔧 源码</a>
+      </div>
     </div>
     
     <div class="chat-container">
@@ -61,16 +70,17 @@
         <button class="role-btn" data-role="pm">👔 我是 PM</button>
         <button class="role-btn" data-role="ae">💻 我是 AE</button>
         <button class="role-btn" data-role="debug">🔍 问题排查</button>
+        <button class="role-btn" data-role="qa">📚 知识问答</button>
       </div>
       
       <div class="chat-messages" id="chatMessages">
         <div class="message bot">
           <div class="message-content markdown-body">
             <div class="welcome-card">
-              <span class="mode-badge" id="modeBadge">未选择角色</span>
+              <span class="mode-badge" id="modeBadge">未选择模式</span>
               <h2>欢迎使用 SSO 项目指导 Agent！</h2>
-              <p>请先选择您的角色，我会提供针对性的指导</p>
-              <p style="font-size: 14px; color: #999;">点击上方按钮选择 PM / AE / 问题排查</p>
+              <p>请先选择角色，或进入「知识问答」模式查询 SSO 概念</p>
+              <p style="font-size: 13px; color: #999;">PM / AE / 问题排查 / 知识问答</p>
             </div>
           </div>
         </div>
@@ -90,42 +100,63 @@
     var currentRole = null;
     
     var ANSWERS = {
-      '查看 12 问清单': '### SSO 设计必答问题 12 问\n\n| 序号 | 问题 | 选项/说明 |\n|------|------|----------|\n| 1 | 对接主体 | 主站=认证方，子站=依赖方 |\n| 2 | 网络环境 | 内网/外网？ |\n| 3 | 是否跨域 | 域名/端口一致=同源 |\n| 4 | 相关功能 | 免登？数据同步？ |\n| 5 | 免登场景 | iframe 嵌套还是跳转？ |\n| 6 | 获取 Token 方式 | URL 参数/Header/Cookie |\n| 7 | 跳转地址 | 固定地址还是动态 return_url |\n| 8 | 认证方式 | JWT/OAuth2/SAML/其他 |\n| 9 | 登录策略 | 匹配/创建新用户 |\n| 10 | 登出策略 | 全局/局部/被动登出 |\n| 11 | 数据同步 | 实时/定时/被动 |\n| 12 | 对接量级 | 用户量和并发量 |\n\n把这 12 个问题发给客户填写！',
+      // ========== PM 模式 ==========
+      '查看 12 问清单': '### SSO 设计必答问题 12 问\n\n| 序号 | 问题 | 选项/说明 |\n|------|------|----------|\n| 1 | 对接主体 | 主站=认证方，子站=依赖方 |\n| 2 | 网络环境 | 内网/外网？ |\n| 3 | 是否跨域 | 域名/端口一致=同源 |\n| 4 | 相关功能 | 免登？数据同步？ |\n| 5 | 免登场景 | iframe 嵌套还是跳转？ |\n| 6 | 获取 Token 方式 | URL 参数/Header/Cookie |\n| 7 | 跳转地址 | 固定地址还是动态 return_url |\n| 8 | 认证方式 | JWT/OAuth2/SAML/其他 |\n| 9 | 登录策略 | 匹配/创建新用户 |\n| 10 | 登出策略 | 全局/局部/被动登出 |\n| 11 | 数据同步 | 实时/定时/被动 |\n| 12 | 对接量级 | 用户量和并发量 |\n\n<span class="source-tag">📖 来源：飞书知识库 - SSO能力建设</span>',
 
-      '需求质量检查': '### 需求质量检查清单\n\n- [ ] 明确对接主体（主站/子站）\n- [ ] 明确网络环境（内网/外网、是否跨域）\n- [ ] 明确免登场景（iframe/跳转）\n- [ ] 明确数据同步需求\n- [ ] 明确认证方式\n- [ ] 获取第三方对接文档\n- [ ] 明确用户匹配策略\n- [ ] 明确登出策略\n\n都确认后发给我检查！',
+      '需求质量检查': '### 需求质量检查清单\n\n- [ ] 明确对接主体（主站/子站）\n- [ ] 明确网络环境（内网/外网、是否跨域）\n- [ ] 明确免登场景（iframe/跳转）\n- [ ] 明确数据同步需求\n- [ ] 明确认证方式\n- [ ] 获取第三方对接文档\n- [ ] 明确用户匹配策略\n- [ ] 明确登出策略\n- [ ] 明确对接量级\n\n<span class="source-tag">📖 来源：飞书知识库 - 需规入厂审查</span>',
 
-      '常见风险提示': '### SSO 项目常见风险\n\n**1. 第三方配合度低**\n- 对策：提前明确对接窗口，拉群沟通\n\n**2. 需求范围蔓延**\n- 对策：需求签字确认，变更走流程\n\n**3. 客户期望过高**\n- 对策：提前说明能力边界\n\n**4. 网络环境复杂**\n- 对策：提前确认，预留调试时间\n\n**5. 版本不支持**\n- 对策：检查 license，需 EOD 及以上',
+      '常见风险提示': '### SSO 项目常见风险\n\n**1. 第三方配合度低**\n- 对策：提前明确对接窗口，拉群沟通\n\n**2. 需求范围蔓延**\n- 对策：需求签字确认，变更走流程\n\n**3. 客户期望过高**\n- 对策：提前说明能力边界，展示配置/二开差异\n\n**4. 网络环境复杂**\n- 对策：提前确认内外网、跨域情况，预留调试时间\n\n**5. 版本不支持**\n- 对策：检查 license，需 EOD 及以上版本',
 
-      '需求文档模板': '### SSO 需求调研表\n\n项目名称：___________\n客户名称：___________\n对接系统：___________\n\n【对接主体】我们是：主站 / 子站\n\n【网络环境】内网 / 外网，是否跨域：是 / 否\n\n【功能需求】免登：是/否，数据同步：是/否\n\n【认证方式】JWT / OAuth2.0 / SAML / 其他\n\n【用户策略】匹配不上：拒绝 / 创建新用户\n\n【项目信息】用户量：___，并发量：___，上线时间：___',
+      '需求文档模板': '### SSO 需求调研表\n\n项目名称：___________\n客户名称：___________\n对接系统：___________\n\n【对接主体】我们是：主站 / 子站\n\n【网络环境】内网 / 外网，是否跨域：是 / 否\n\n【功能需求】免登：是/否，数据同步：是/否\n\n【免登场景】iframe 嵌套 / 跳转免登\n\n【认证方式】JWT / OAuth2.0 / SAML / 其他\n\n【用户策略】匹配不上：拒绝 / 创建新用户\n\n【登出策略】全局登出 / 局部登出 / 被动登出\n\n【数据同步】实时 / 定时 / 被动\n\n【项目信息】用户量：___，并发量：___，上线时间：___',
 
-      '场景识别指南': '### 对接场景识别\n\n**场景 A：双 smardaten 平台**\n- 方案：配置实现，0 二开，0.5 人天\n\n**场景 B：smardaten 为主站**\n- 方案：配置实现，0.2 人天\n\n**场景 C：smardaten 为子站**\n- 方案：评估实现（配置/二开），1-5 人天\n\n**场景 D：简单免登**\n- 方案：约定加密规则，1-3 人天\n\n你是哪种场景？',
+      // ========== AE 模式 ==========
+      '场景识别指南': '### 对接场景识别\n\n**场景 A：双 smardaten 平台**\n- 方案：✅ 配置实现，0 二开，0.5 人天\n- 只需配置 SSO + 子站信息录入\n\n**场景 B：smardaten 为主站，第三方为子站**\n- 方案：✅ 配置实现，0.2 人天\n- 提供对接文档给第三方\n\n**场景 C：smardaten 为子站，第三方为主站**\n- 方案：⚠️ 评估实现（配置优先 / 二开备选），1-5 人天\n- 需第三方提供 SSO 对接文档\n\n**场景 D：简单免登（不区分主站子站）**\n- 方案：⚠️ 约定加密规则 + Token 传递，1-3 人天\n\n<span class="source-tag">📖 来源：飞书知识库 - 设计章节</span>',
 
-      '配置实现方案': '### 配置实现方案\n\n**SSO 配置路径：** 系统配置 → 安全配置 → SSO 配置\n\n**配置项：**\n- SSO 类型：common/OAuth 2.0\n- 启用 SSO：是（sys_property=1）\n- Token 获取：URL 参数/服务编排\n- 用户匹配：工号/账号/邮箱\n- 登录策略：匹配/创建\n- 登出策略：全局/局部\n\n需要服务编排示例吗？',
+      '配置实现方案': '### 配置实现方案（含服务编排）\n\n**配置路径：** 系统配置 → 安全配置 → SSO 配置\n\n**配置项：**\n- SSO 协议类型：common / OAuth 2.0\n- 启用 SSO：是（sys_property=1）\n- 隐藏登录页：否\n- Token 获取：URL 参数 / 服务编排 REST 调用\n- 用户匹配：工号 / 账号 / 邮箱\n- 登录策略：匹配现有 / 自动创建\n- 登出策略：全局 / 局部\n\n**服务编排场景：**\n| 场景 | 编排逻辑 | 工作量 |\n|------|---------|--------|\n| Token 需调用 HTTP | REST 服务 → 解析 → 返回 | 0.5 人天 |\n| 用户需多字段匹配 | 查询表 → 组合匹配 → 返回 | 0.5 人天 |\n| Token 需加密解密 | 脚本节点 → 算法 → 返回 | 0.5 人天 |\n| 地址需动态拼接 | 获取参数 → 拼接 URL → 返回 | 0.2 人天 |\n\n<span class="source-tag">📖 来源：飞书知识库 - 免登功能设计思路</span>',
 
-      '二开方案评估': '### 二开方案评估\n\n**何时二开：**\n- 协议不支持（SAML/私有）：3-5 人天\n- Token 获取复杂：2-3 人天\n- 用户匹配复杂：2-3 人天\n\n**二开位置：**\n1. 前端 - postMessage 监听\n2. 后端 - 自定义 REST 服务\n3. 服务编排 - 自定义逻辑\n\n建议：优先服务编排！',
+      '二开方案评估': '### 二开方案评估\n\n**何时二开：**\n| 不满足点 | 二开方案 | 工作量 |\n|---------|---------|--------|\n| 协议不支持（SAML/私有）| 自定义认证逻辑 | 3-5 人天 |\n| 对方参数过多 | HTML 中间页统一处理 | 1-2 人天 |\n| 认证需复杂逻辑 | JavaBean 自定义验证 | 2-3 人天 |\n\n**原则：配置优先，二开备选**\n- 配置（含服务编排）：兼容升级、维护成本低\n- 二开：需持续维护、升级可能冲突',
 
-      '服务编排配置': '### 服务编排配置示例\n\n**Token 获取：**\n1. REST 服务：调用第三方 token 接口\n2. 脚本节点：解析响应\n3. 返回：{token, expiresIn}\n\n**用户匹配：**\n1. 查询用户表\n2. 条件：third_party_id = 输入\n3. 存在则返回 ID，不存在则创建\n\n需要详细流程图吗？',
+      '服务编排配置': '### 服务编排配置示例\n\n**1. Token 获取流程：**\n  REST 服务：调用主站 token 接口\n  → 脚本节点：解析响应 JSON\n  → 返回：token、expiresIn\n\n**2. 用户匹配流程：**\n  查询用户表：按 third_party_id 匹配\n  → 存在：返回 user_id\n  → 不存在：根据策略创建/拒绝\n\n**3. 登出流程：**\n  REST 服务：通知主站销毁会话\n  → 清除本地 session\n  → 返回前端状态码',
 
-      '联调检查清单': '### 联调检查清单\n\n**配置检查：**\n- [ ] SSO 配置已启用\n- [ ] Token 接口已配置\n- [ ] 用户匹配字段已配置\n\n**网络检查：**\n- [ ] 接口可访问\n- [ ] 防火墙已放行\n- [ ] HTTPS 证书有效\n\n**日志检查：**\n- [ ] 查看 sdata-run.log\n- [ ] 搜索 ===/sso/login\n- [ ] 无报错',
+      '联调检查清单': '### 联调检查清单\n\n**配置检查：**\n- [ ] SSO 配置已启用（sys_property=1）\n- [ ] Token 校验服务编排已配置\n- [ ] 用户匹配字段已确认\n- [ ] 登出策略已配置\n\n**网络检查：**\n- [ ] 接口可访问（ping/telnet）\n- [ ] 防火墙已放行\n- [ ] HTTPS 证书有效\n\n**日志检查：**\n- [ ] 查看 /tomcat/logs/sdata/sdata-run.log\n- [ ] 搜索 ===/sso/login\n\n**接口检查（F12）：**\n- [ ] /querySSOConfig 正常\n- [ ] /login 触发并返回\n- [ ] /user 返回用户信息',
 
-      '跳转到登录页': '### 问题：跳转到登录页\n\n**排查步骤：**\n\n1. F12 → Network → Preserve log\n2. 检查是否请求：/querySSOConfig、/login、/user\n3. /login 未触发 → 检查 Token 是否传递\n4. 接口报错 → 查看错误信息\n\n**常见原因：**\n1. 跨域问题\n2. SSO 配置未开启\n3. 链接未拼接 Token\n4. license 为 EOB',
+      // ========== 问题排查模式 ==========
+      '跳转到登录页': '### 问题：跳转到登录页\n\n**排查步骤：**\n\n1. F12 → Network → 勾选 Preserve log → 重试\n2. 检查关键接口：/querySSOConfig、/login、/user\n3. /login 未触发 → 检查 Token 是否传递\n4. 接口报错 → 查看返回错误信息\n\n**常见原因：**\n| 原因 | 解决 |\n|------|------|\n| 跨域问题 | 联系运维配置同源 |\n| SSO 配置未开启 | 检查 sys_property=1 |\n| 链接未拼接 Token | 检查跳转 URL 参数 |\n| license 为 EOB | 联系 PM 升级 |\n\n<span class="source-tag">📖 来源：飞书知识库 - 常见问题总结 3.3.2.1</span>',
 
-      '数据库没有用户': '### 问题：数据库没有当前用户\n\n**解决方法：**\n\n1. 查询映射表：\n   SELECT * FROM t_sdata_user_mapping WHERE third_party_id = \'ID\';\n\n2. 清理脏数据：\n   DELETE FROM t_sdata_user_mapping WHERE third_party_id = \'ID\';\n\n3. 重新登录\n\n4. 检查用户创建配置',
+      '数据库没有用户': '### 问题：数据库没有当前用户\n\n**解决方法：**\n\n1. 查询映射表：\n```sql\nSELECT * FROM t_sdata_user_mapping WHERE third_party_id = "用户ID";\n```\n\n2. 清理脏数据：\n```sql\nDELETE FROM t_sdata_user_mapping WHERE third_party_id = "用户ID";\n```\n\n3. 重新登录（系统会自动重新同步映射用户信息）\n\n<span class="source-tag">📖 来源：飞书知识库 - 常见问题总结 3.3.2.2</span>',
 
-      'Token 验证失败': '### 问题：Token 验证失败\n\n**排查步骤：**\n\n1. 查看日志：\n   tail -f sdata-run.log | grep ===/sso/login\n\n2. 测试网络：\n   telnet third-party.com 443\n\n3. 检查问题：\n   - 连接超时 → 联系运维\n   - 401/403 → Token 无效\n   - 500 → 接口报错',
+      'Token 验证失败': '### 问题：Token 验证失败 / 连接超时\n\n**排查步骤：**\n\n1. 查看日志：\n```bash\ntail -f /tomcat/logs/sdata/sdata-run.log | grep ===/sso/login\n```\n\n2. 测试网络连通性：\n```bash\nping 第三方IP\ntelnet 第三方域名 443\n```\n\n3. 检查 REST 服务返回：\n  - 连接超时 → 联系运维打通网络\n  - 401/403 → Token 无效或过期\n  - 500 → 接口内部错误',
 
-      '版本不支持': '### 问题：版本不支持 SSO\n\n**检查方法：**\n\nF12 控制台输入：\nwindow.configuration.licenseMode\n\n**版本说明：**\n- EOB：不支持 ❌\n- EOD：支持 ✅\n- EOC：支持 ✅\n\n显示 EOB 需联系 PM 升级 license',
+      '版本不支持': '### 问题：版本不支持 SSO\n\n**检查方法：**\n\nF12 控制台输入：\n```javascript\nwindow.configuration.licenseMode\n```\n\n**版本说明：**\n- EOB → ❌ 不支持 SSO\n- EOD → ✅ 支持 SSO\n- EOC → ✅ 支持 SSO\n\n如显示 EOB，联系 PM 重新申请 license',
 
-      '跨域问题': '### 问题：跨域问题\n\n**表现：**\n- iframe 加载后显示登录页\n- 控制台报跨域错误\n\n**解决方案：**\n\n**方案 1（推荐）：** 配置同源\n- 域名保持一致\n- 端口保持一致\n\n**方案 2：** postMessage 跨域通信（需二开）\n\n最佳实践：优先配置同源！'
+      '跨域问题': '### 问题：跨域问题（iframe 无法免登）\n\n**表现：**\n- iframe 加载后显示登录页\n- 控制台报跨域错误（CORS）\n\n**解决方案：**\n\n**方案 1（推荐）：配置同源**\n- 客户网站与 smardaten 域名一致\n- 端口也保持一致\n\n**方案 2：postMessage 跨域通信**\n- 需前端二开，通过 postMessage 传递 Token\n- 复杂度较高，不推荐\n\n**最佳实践：优先联系运维配置同源！**',
+
+      // ========== 知识问答模式（新增） ==========
+      '什么是SSO': '### 什么是 SSO？\n\n**核心定义**\nSSO（单点登录）是一种身份认证方案，允许用户使用一组凭证在一次登录中访问多个独立软件系统。\n\n**核心思想**：一次登录，处处通行\n\n**办公园区类比**\n\n想象你走进一个巨大的办公园区：\n\n❌ 没有 SSO 时：每进一栋楼，都要被保安盘问一遍："你是谁？"每栋楼的保安有自己的花名册，不认别楼的钥匙。\n\n✅ 有了 SSO 时：园区入口有个"总保安亭"。你去总保安亭验明正身一次，拿到"通行徽章"（Token）。之后去任何大楼，保安看到徽章直接放行。\n\n<span class="source-tag">📖 来源：飞书知识库 - 概念解析</span>',
+
+      '什么是主站': '### 什么是主站？\n\n**一句话定义**\n主站是 SSO 体系中的认证核心，负责统一登录入口、身份认证、令牌颁发和全局会话管理。\n\n**类比**：园区总保安亭\n\n**主站 6 大职责：**\n| 职责 | 说明 |\n|------|------|\n| 统一登录入口 | 所有用户访问的起点 |\n| 认证用户身份 | 验证用户名密码 |\n| 颁发全局通行证 | 生成加密 Token |\n| 调度重定向 | 带 Token 跳转子系统 |\n| 受信任担保人 | 子站向主站核实 Token |\n| 管理全局登录 | 退出时通知所有子系统 |\n\n<span class="source-tag">📖 来源：飞书知识库 - 概念解析</span>',
+
+      '什么是子站': '### 什么是子站？\n\n**一句话定义**\n子站是依赖主站进行身份认证的独立应用，专注业务功能，不存储完整用户信息。\n\n**类比**：园区各栋大楼\n\n**子站 6 大职责：**\n| 职责 | 说明 |\n|------|------|\n| 保护自身资源 | 核心功能和数据需门禁 |\n| 拦截未验证请求 | 无 Token 拒绝访问 |\n| 重定向去主站登录 | 无 Token 跳转主站 |\n| 验证通行证 | 校验 Token 签名和有效期 |\n| 提供个性化服务 | 按身份信息展示功能 |\n| 本地登出 | 仅本系统退出 |\n\n<span class="source-tag">📖 来源：飞书知识库 - 概念解析</span>',
+
+      'UUM是什么': '### 什么是 UUM？\n\n**一句话定义**\nUUM（统一身份认证/统一用户管理）是企业级的身份基础设施，管理账户生命周期、权限策略和身份同步。\n\n**类比**：园区人事管理中心\n\n**与 SSO 的关系：**\n- SSO 解决："一次登录，到处通行"（便捷性）\n- UUM 解决："你是谁、你能做什么、权限如何变"（管理与安全）\n\n**UUM 四大职能：**\n- 📋 发工牌（账户管理）：入职创建、离职注销\n- 🔑 定权限（权限管理）：谁能进哪些楼\n- 🔄 同步信息（身份同步）：调岗自动更新\n- 🎫 支持 SSO：为总保安亭提供花名册\n\n<span class="source-tag">📖 来源：飞书知识库 - 概念解析</span>',
+
+      '协议对比': '### 主流 SSO 认证协议对比\n\n| 维度 | OAuth2.0+OIDC | JWT | SAML 2.0 | Cookie 会话 |\n|------|-------------|-----|----------|------------|\n| 适用场景 | 开放平台、第三方 | 轻量无状态、移动 | 企业联邦、政务 | 同主域内部 Web |\n| smardaten 支持 | ✅ 推荐 | ✅ 支持 | ⚠️ 需评估 | ✅ 支持 |\n| 跨域 | ✅ | ✅ | ✅ | ❌ |\n| 复杂度 | 中 | 低 | 高 | 低 |\n| 安全性 | 高 | 中 | 极高 | 中 |\n\n**选型口诀**：开放用 OAuth，轻量用 JWT，联邦用 SAML，内部同域用 Cookie。\n\n<span class="source-tag">📖 来源：飞书知识库 - 常见SSO认证方式</span>',
+
+      '配置vs二开': '### 配置实现 vs 代码二开\n\n| 维度 | 配置实现（含服务编排） | 代码二开 |\n|------|---------------------|---------|\n| 工作量 | 0.5-1 人天 | 3-5 人天 |\n| 升级兼容 | ✅ 平台升级无影响 | ⚠️ 可能冲突 |\n| 维护成本 | 低 | 高 |\n| 灵活性 | 覆盖 80% 场景 | 覆盖 100% 场景 |\n| 推荐度 | ⭐⭐⭐ 优先 | ⭐ 最后 |\n\n**口诀**：配置优先记心间，二开方案最后选\n\n<span class="source-tag">📖 来源：SSO skill - 核心原则</span>',
+
+      'iframe vs 跳转': '### iframe 嵌套 vs 跳转免登\n\n| 维度 | iframe 嵌套 | 跳转免登 |\n|------|-----------|---------|\n| 用户体验 | 无感，不离开页面 | 感知跳转 |\n| 实现复杂度 | 跨域需配置同源 | 简单 |\n| 兼容性 | 需解决跨域 | 高 |\n| 适用场景 | 同源系统 | 跨域系统 |\n\n**口诀**：同源选 iframe，跨域选跳转\n\n<span class="source-tag">📖 来源：飞书知识库 - 设计章节</span>',
+
+      '数据同步策略': '### 数据同步策略对比\n\n| 方式 | 适用场景 | 优点 | 缺点 |\n|------|---------|------|------|\n| 实时 API 同步 | 高实时性 | 数据最新 | 需对方提供 API |\n| 定时批量同步 | 非关键系统 | 压力小、可控 | 有延迟窗口 |\n| 被动创建 | 快速对接 | 最轻量 | 仅首次登录 |\n\n**选型建议**：\n- 用户变化频繁 → 实时 API\n- 用户稳定 → 定时批量\n- 紧急上线 → 被动创建先通再优\n\n<span class="source-tag">📖 来源：飞书知识库 - 数据同步功能设计</span>'
     };
     
     function selectRole(role) {
       currentRole = role;
       
       var roleData = {
-        pm: { name: 'PM', quickActions: ['查看 12 问清单', '需求质量检查', '常见风险提示', '需求文档模板'] },
-        ae: { name: 'AE', quickActions: ['场景识别指南', '配置实现方案', '二开方案评估', '服务编排配置', '联调检查清单'] },
-        debug: { name: '问题排查', quickActions: ['跳转到登录页', '数据库没有用户', 'Token 验证失败', '版本不支持', '跨域问题'] }
+        pm: { name: 'PM 需求调研', quickActions: ['查看 12 问清单', '需求质量检查', '常见风险提示', '需求文档模板'] },
+        ae: { name: 'AE 方案设计', quickActions: ['场景识别指南', '配置实现方案', '二开方案评估', '服务编排配置', '联调检查清单'] },
+        debug: { name: '联调问题排查', quickActions: ['跳转到登录页', '数据库没有用户', 'Token 验证失败', '版本不支持', '跨域问题'] },
+        qa: { name: '知识库问答', quickActions: ['什么是SSO', '什么是主站', '什么是子站', 'UUM是什么', '协议对比', '配置vs二开', 'iframe vs 跳转', '数据同步策略'] }
       };
       
       var data = roleData[role];
@@ -141,17 +172,22 @@
       quickActions.style.display = 'flex';
       quickActions.innerHTML = '';
       for (var j = 0; j < data.quickActions.length; j++) {
-        var btn = document.createElement('button');
-        btn.className = 'quick-action-btn';
-        btn.textContent = data.quickActions[j];
-        btn.onclick = (function(action) {
-          return function() { sendQuickAction(action); };\
+        (function(action) {
+          var btn = document.createElement('button');
+          btn.className = 'quick-action-btn';
+          btn.textContent = action;
+          btn.onclick = function() { sendQuickAction(action); };
+          quickActions.appendChild(btn);
         })(data.quickActions[j]);
-        quickActions.appendChild(btn);
       }
       
-      var welcomeMsg = '你好！我是 SSO 项目指导 Agent！\\n\\n我是' + (data.name === 'PM' ? '👔 PM' : data.name === 'AE' ? '💻 AE' : '🔍 问题排查') + '助手。\\n\\n请点击下方的快捷按钮，我会提供完整的指导方案！';
-      addMessage(welcomeMsg, 'bot');
+      var welcomeMsgs = {
+        pm: '你好！我是 👔 PM 助手。\\n\\n请点击下方快捷按钮：\\n• 查看 12 问 → 发给客户填写\\n• 需求质量检查 → 确认信息完整\\n• 风险提示 → 提前规避坑\\n• 需求模板 → 整理正式文档',
+        ae: '你好！我是 💻 AE 助手。\\n\\n请点击下方快捷按钮：\\n• 场景识别 → 确定对接类型\\n• 配置方案 → 优先用配置实现\\n• 二开评估 → 仅万不得已才用\\n• 服务编排 → 查看配置示例',
+        debug: '你好！我是 🔍 排查助手。\\n\\n请点击下方快捷按钮选择问题类型：\\n• 跳转到登录页（最常见）\\n• Token 验证失败 / 数据库无用户\\n• 版本不支持 / 跨域问题',
+        qa: '你好！我是 📚 知识库助手。\\n\\n基于 SSO 能力建设知识库 + SSO Guide，回答概念和对比问题：\\n• 基础概念：SSO / 主站 / 子站 / UUM\\n• 协议对比：OAuth vs JWT vs SAML\\n• 方案选型：配置 vs 二开 / iframe vs 跳转\\n• 数据同步策略对比'
+      };
+      addMessage(welcomeMsgs[role], 'bot');
     }
     
     function addMessage(content, type) {
@@ -169,4 +205,103 @@
     }
     
     function simpleMarkdown(text) {
-      if (!text) return '';\n      var html = text\n        .replace(/^### (.*$)/gm, '<h3>$1</h3>')\n        .replace(/^#### (.*$)/gm, '<h4>$1</h4>')\n        .replace(/\\*\\*(.*?)\\*\\*/g, '<strong>$1</strong>')\n        .replace(/^- (.*$)/gm, '<li>$1</li>')\n        .replace(/^\\d+\\. (.*$)/gm, '<li>$1</li>')\n        .replace(/\\n/g, '<br>');\n      \n      // 表格处理\n      var lines = html.split('<br>');\n      var inTable = false;\n      var tableRows = [];\n      var result = [];\n      \n      for (var i = 0; i < lines.length; i++) {\n        var line = lines[i];\n        if (line.indexOf('|') === 0 && line.lastIndexOf('|') === line.length - 1) {\n          if (!inTable) {\n            inTable = true;\n            tableRows = [];\n          }\n          var cells = line.split('|').filter(function(c) { return c.trim(); });\n          if (cells.length > 0) {\n            tableRows.push('<tr>' + cells.map(function(c) { return '<td>' + c.trim() + '</td>'; }).join('') + '</tr>');\n          }\n        } else {\n          if (inTable && tableRows.length > 0) {\n            result.push('<table>' + tableRows.join('') + '</table>');\n            inTable = false;\n          }\n          result.push(line);\n        }\n      }\n      \n      if (inTable && tableRows.length > 0) {\n        result.push('<table>' + tableRows.join('') + '</table>');\n      }\n      \n      return result.join('<br>');\n    }\n    \n    function sendMessage() {\n      var input = document.getElementById('userInput');\n      var message = input.value.trim();\n      if (!message) return;\n      \n      if (!currentRole) {\n        addMessage('请先选择角色（PM / AE / 问题排查）', 'bot');\n        return;\n      }\n      \n      addMessage(message, 'user');\n      input.value = '';\n      \n      var answer = null;\n      for (var key in ANSWERS) {\n        if (message.indexOf(key) >= 0 || key.indexOf(message) >= 0) {\n          answer = ANSWERS[key];\n          break;\n        }\n      }\n      \n      if (answer) {\n        setTimeout(function() { addMessage(answer, 'bot'); }, 300);\n      } else {\n        setTimeout(function() { addMessage('收到问题：' + message + '\\n\\n建议点击快捷按钮获取答案！', 'bot'); }, 300);\n      }\n    }\n    \n    function sendQuickAction(action) {\n      var answer = ANSWERS[action];\n      if (answer) {\n        addMessage(action, 'user');\n        setTimeout(function() { addMessage(answer, 'bot'); }, 300);\n      }\n    }\n    \n    // 初始化\n    window.onload = function() {\n      console.log('SSO Guide initialized');\n      var buttons = document.querySelectorAll('.role-btn');\n      for (var i = 0; i < buttons.length; i++) {\n        buttons[i].onclick = (function(btn) {\n          return function() {\n            console.log('Role selected:', btn.getAttribute('data-role'));\n            selectRole(btn.getAttribute('data-role'));\n          };\n        })(buttons[i]);\n      }\n    };\n  </script>\n</body>\n</html>
+      if (!text) return '';
+      var html = text
+        .replace(/^### (.*$)/gm, '<h3>$1</h3>')
+        .replace(/^#### (.*$)/gm, '<h4>$1</h4>')
+        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+        .replace(/^- (.*$)/gm, '<li>$1</li>')
+        .replace(/^\d+\. (.*$)/gm, '<li>$1</li>')
+        .replace(/^```(\w*)\n([\s\S]*?)```/gm, '<pre><code>$2</code></pre>')
+        .replace(/`([^`]+)`/g, '<code>$1</code>')
+        .replace(/\n/g, '<br>');
+      
+      // 表格处理
+      var lines = html.split('<br>');
+      var inTable = false;
+      var tableRows = [];
+      var result = [];
+      
+      for (var i = 0; i < lines.length; i++) {
+        var line = lines[i];
+        if (line.indexOf('|') === 0 && line.lastIndexOf('|') === line.length - 1) {
+          if (!inTable) {
+            inTable = true;
+            tableRows = [];
+          }
+          var cells = line.split('|').filter(function(c) { return c.trim(); });
+          if (cells.length > 0) {
+            tableRows.push('<tr>' + cells.map(function(c) { return '<td>' + c.trim() + '</td>'; }).join('') + '</tr>');
+          }
+        } else {
+          if (inTable && tableRows.length > 0) {
+            result.push('<table>' + tableRows.join('') + '</table>');
+            inTable = false;
+          }
+          result.push(line);
+        }
+      }
+      
+      if (inTable && tableRows.length > 0) {
+        result.push('<table>' + tableRows.join('') + '</table>');
+      }
+      
+      return result.join('<br>');
+    }
+    
+    function sendMessage() {
+      var input = document.getElementById('userInput');
+      var message = input.value.trim();
+      if (!message) return;
+      
+      if (!currentRole) {
+        addMessage('请先选择模式（PM / AE / 问题排查 / 知识问答）', 'bot');
+        return;
+      }
+      
+      addMessage(message, 'user');
+      input.value = '';
+      
+      var answer = null;
+      for (var key in ANSWERS) {
+        if (message.indexOf(key) >= 0 || key.indexOf(message) >= 0) {
+          answer = ANSWERS[key];
+          break;
+        }
+      }
+      
+      if (answer) {
+        setTimeout(function() { addMessage(answer, 'bot'); }, 300);
+      } else {
+        var topics;
+        if (currentRole === 'pm') topics = '12 问清单 / 需求检查 / 风险提示 / 需求模板';
+        else if (currentRole === 'ae') topics = '场景识别 / 配置方案 / 二开评估 / 服务编排 / 联调清单';
+        else if (currentRole === 'debug') topics = '跳转登录页 / 数据库用户 / Token 验证 / 版本 / 跨域';
+        else topics = '什么是SSO / 主站 / 子站 / UUM / 协议对比 / 配置vs二开 / 数据同步';
+        setTimeout(function() { addMessage('收到问题：' + message + '\\n\\n建议点击快捷按钮获取答案！\\n可咨询：' + topics, 'bot'); }, 300);
+      }
+    }
+    
+    function sendQuickAction(action) {
+      var answer = ANSWERS[action];
+      if (answer) {
+        addMessage(action, 'user');
+        setTimeout(function() { addMessage(answer, 'bot'); }, 300);
+      }
+    }
+    
+    // 初始化
+    window.onload = function() {
+      console.log('SSO Guide v2.0 - knowledge base enhanced');
+      var buttons = document.querySelectorAll('.role-btn');
+      for (var i = 0; i < buttons.length; i++) {
+        (function(btn) {
+          btn.onclick = function() {
+            selectRole(btn.getAttribute('data-role'));
+          };
+        })(buttons[i]);
+      }
+    };
+  </script>
+</body>
+</html>
