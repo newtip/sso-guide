@@ -108,56 +108,8 @@
     var SSO_API_URL = 'http://122.51.14.233:32567';  // 🔧 替换为你的 API 地址
     
     var currentRole = null;
-    
-    var ANSWERS = {
-      // ========== PM 模式 ==========
-      '查看 12 问清单': '### SSO 设计必答问题 12 问\n\n| 序号 | 问题 | 选项/说明 |\n|------|------|----------|\n| 1 | 对接主体 | 主站=认证方，子站=依赖方 |\n| 2 | 网络环境 | 内网/外网？ |\n| 3 | 是否跨域 | 域名/端口一致=同源 |\n| 4 | 相关功能 | 免登？数据同步？ |\n| 5 | 免登场景 | iframe 嵌套还是跳转？ |\n| 6 | 获取 Token 方式 | URL 参数/Header/Cookie |\n| 7 | 跳转地址 | 固定地址还是动态 return_url |\n| 8 | 认证方式 | JWT/OAuth2/SAML/其他 |\n| 9 | 登录策略 | 匹配/创建新用户 |\n| 10 | 登出策略 | 全局/局部/被动登出 |\n| 11 | 数据同步 | 实时/定时/被动 |\n| 12 | 对接量级 | 用户量和并发量 |\n\n<span class="source-tag">📖 来源：飞书知识库 - SSO能力建设</span>',
 
-      '需求质量检查': '### 需求质量检查清单\n\n- [ ] 明确对接主体（主站/子站）\n- [ ] 明确网络环境（内网/外网、是否跨域）\n- [ ] 明确免登场景（iframe/跳转）\n- [ ] 明确数据同步需求\n- [ ] 明确认证方式\n- [ ] 获取第三方对接文档\n- [ ] 明确用户匹配策略\n- [ ] 明确登出策略\n- [ ] 明确对接量级\n\n<span class="source-tag">📖 来源：飞书知识库 - 需规入厂审查</span>',
-
-      '常见风险提示': '### SSO 项目常见风险\n\n**1. 第三方配合度低**\n- 对策：提前明确对接窗口，拉群沟通\n\n**2. 需求范围蔓延**\n- 对策：需求签字确认，变更走流程\n\n**3. 客户期望过高**\n- 对策：提前说明能力边界，展示配置/二开差异\n\n**4. 网络环境复杂**\n- 对策：提前确认内外网、跨域情况，预留调试时间\n\n**5. 版本不支持**\n- 对策：检查 license，需 EOD 及以上版本',
-
-      '需求文档模板': '### SSO 需求调研表\n\n项目名称：___________\n客户名称：___________\n对接系统：___________\n\n【对接主体】我们是：主站 / 子站\n\n【网络环境】内网 / 外网，是否跨域：是 / 否\n\n【功能需求】免登：是/否，数据同步：是/否\n\n【免登场景】iframe 嵌套 / 跳转免登\n\n【认证方式】JWT / OAuth2.0 / SAML / 其他\n\n【用户策略】匹配不上：拒绝 / 创建新用户\n\n【登出策略】全局登出 / 局部登出 / 被动登出\n\n【数据同步】实时 / 定时 / 被动\n\n【项目信息】用户量：___，并发量：___，上线时间：___',
-
-      // ========== AE 模式 ==========
-      '场景识别指南': '### 对接场景识别\n\n**场景 A：双 smardaten 平台**\n- 方案：✅ 配置实现，0 二开，0.5 人天\n- 只需配置 SSO + 子站信息录入\n\n**场景 B：smardaten 为主站，第三方为子站**\n- 方案：✅ 配置实现，0.2 人天\n- 提供对接文档给第三方\n\n**场景 C：smardaten 为子站，第三方为主站**\n- 方案：⚠️ 评估实现（配置优先 / 二开备选），1-5 人天\n- 需第三方提供 SSO 对接文档\n\n**场景 D：简单免登（不区分主站子站）**\n- 方案：⚠️ 约定加密规则 + Token 传递，1-3 人天\n\n<span class="source-tag">📖 来源：飞书知识库 - 设计章节</span>',
-
-      '配置实现方案': '### 配置实现方案（含服务编排）\n\n**配置路径：** 系统配置 → 安全配置 → SSO 配置\n\n**配置项：**\n- SSO 协议类型：common / OAuth 2.0\n- 启用 SSO：是（sys_property=1）\n- 隐藏登录页：否\n- Token 获取：URL 参数 / 服务编排 REST 调用\n- 用户匹配：工号 / 账号 / 邮箱\n- 登录策略：匹配现有 / 自动创建\n- 登出策略：全局 / 局部\n\n**服务编排场景：**\n| 场景 | 编排逻辑 | 工作量 |\n|------|---------|--------|\n| Token 需调用 HTTP | REST 服务 → 解析 → 返回 | 0.5 人天 |\n| 用户需多字段匹配 | 查询表 → 组合匹配 → 返回 | 0.5 人天 |\n| Token 需加密解密 | 脚本节点 → 算法 → 返回 | 0.5 人天 |\n| 地址需动态拼接 | 获取参数 → 拼接 URL → 返回 | 0.2 人天 |\n\n<span class="source-tag">📖 来源：飞书知识库 - 免登功能设计思路</span>',
-
-      '二开方案评估': '### 二开方案评估\n\n**何时二开：**\n| 不满足点 | 二开方案 | 工作量 |\n|---------|---------|--------|\n| 协议不支持（SAML/私有）| 自定义认证逻辑 | 3-5 人天 |\n| 对方参数过多 | HTML 中间页统一处理 | 1-2 人天 |\n| 认证需复杂逻辑 | JavaBean 自定义验证 | 2-3 人天 |\n\n**原则：配置优先，二开备选**\n- 配置（含服务编排）：兼容升级、维护成本低\n- 二开：需持续维护、升级可能冲突',
-
-      '服务编排配置': '### 服务编排配置示例\n\n**1. Token 获取流程：**\n  REST 服务：调用主站 token 接口\n  → 脚本节点：解析响应 JSON\n  → 返回：token、expiresIn\n\n**2. 用户匹配流程：**\n  查询用户表：按 third_party_id 匹配\n  → 存在：返回 user_id\n  → 不存在：根据策略创建/拒绝\n\n**3. 登出流程：**\n  REST 服务：通知主站销毁会话\n  → 清除本地 session\n  → 返回前端状态码',
-
-      '联调检查清单': '### 联调检查清单\n\n**配置检查：**\n- [ ] SSO 配置已启用（sys_property=1）\n- [ ] Token 校验服务编排已配置\n- [ ] 用户匹配字段已确认\n- [ ] 登出策略已配置\n\n**网络检查：**\n- [ ] 接口可访问（ping/telnet）\n- [ ] 防火墙已放行\n- [ ] HTTPS 证书有效\n\n**日志检查：**\n- [ ] 查看 /tomcat/logs/sdata/sdata-run.log\n- [ ] 搜索 ===/sso/login\n\n**接口检查（F12）：**\n- [ ] /querySSOConfig 正常\n- [ ] /login 触发并返回\n- [ ] /user 返回用户信息',
-
-      // ========== 问题排查模式 ==========
-      '跳转到登录页': '### 问题：跳转到登录页\n\n**排查步骤：**\n\n1. F12 → Network → 勾选 Preserve log → 重试\n2. 检查关键接口：/querySSOConfig、/login、/user\n3. /login 未触发 → 检查 Token 是否传递\n4. 接口报错 → 查看返回错误信息\n\n**常见原因：**\n| 原因 | 解决 |\n|------|------|\n| 跨域问题 | 联系运维配置同源 |\n| SSO 配置未开启 | 检查 sys_property=1 |\n| 链接未拼接 Token | 检查跳转 URL 参数 |\n| license 为 EOB | 联系 PM 升级 |\n\n<span class="source-tag">📖 来源：飞书知识库 - 常见问题总结 3.3.2.1</span>',
-
-      '数据库没有用户': '### 问题：数据库没有当前用户\n\n**解决方法：**\n\n1. 查询映射表：\n```sql\nSELECT * FROM t_sdata_user_mapping WHERE third_party_id = "用户ID";\n```\n\n2. 清理脏数据：\n```sql\nDELETE FROM t_sdata_user_mapping WHERE third_party_id = "用户ID";\n```\n\n3. 重新登录（系统会自动重新同步映射用户信息）\n\n<span class="source-tag">📖 来源：飞书知识库 - 常见问题总结 3.3.2.2</span>',
-
-      'Token 验证失败': '### 问题：Token 验证失败 / 连接超时\n\n**排查步骤：**\n\n1. 查看日志：\n```bash\ntail -f /tomcat/logs/sdata/sdata-run.log | grep ===/sso/login\n```\n\n2. 测试网络连通性：\n```bash\nping 第三方IP\ntelnet 第三方域名 443\n```\n\n3. 检查 REST 服务返回：\n  - 连接超时 → 联系运维打通网络\n  - 401/403 → Token 无效或过期\n  - 500 → 接口内部错误',
-
-      '版本不支持': '### 问题：版本不支持 SSO\n\n**检查方法：**\n\nF12 控制台输入：\n```javascript\nwindow.configuration.licenseMode\n```\n\n**版本说明：**\n- EOB → ❌ 不支持 SSO\n- EOD → ✅ 支持 SSO\n- EOC → ✅ 支持 SSO\n\n如显示 EOB，联系 PM 重新申请 license',
-
-      '跨域问题': '### 问题：跨域问题（iframe 无法免登）\n\n**表现：**\n- iframe 加载后显示登录页\n- 控制台报跨域错误（CORS）\n\n**解决方案：**\n\n**方案 1（推荐）：配置同源**\n- 客户网站与 smardaten 域名一致\n- 端口也保持一致\n\n**方案 2：postMessage 跨域通信**\n- 需前端二开，通过 postMessage 传递 Token\n- 复杂度较高，不推荐\n\n**最佳实践：优先联系运维配置同源！**',
-
-      // ========== 知识问答模式 ==========
-      '什么是SSO': '### 什么是 SSO？\n\n**核心定义**\nSSO（单点登录）是一种身份认证方案，允许用户使用一组凭证在一次登录中访问多个独立软件系统。\n\n**核心思想**：一次登录，处处通行\n\n**办公园区类比**\n\n❌ 没有 SSO 时：每进一栋楼，都要被保安盘问一遍："你是谁？"每栋楼的保安有自己的花名册，不认别楼的钥匙。\n\n✅ 有了 SSO 时：园区入口有个"总保安亭"。你去总保安亭验明正身一次，拿到"通行徽章"（Token）。之后去任何大楼，保安看到徽章直接放行。\n\n<span class="source-tag">📖 来源：飞书知识库 - 概念解析</span>',
-
-      '什么是主站': '### 什么是主站？\n\n**一句话定义**\n主站是 SSO 体系中的认证核心，负责统一登录入口、身份认证、令牌颁发和全局会话管理。\n\n**类比**：园区总保安亭\n\n**主站 6 大职责：**\n| 职责 | 说明 |\n|------|------|\n| 统一登录入口 | 所有用户访问的起点 |\n| 认证用户身份 | 验证用户名密码 |\n| 颁发全局通行证 | 生成加密 Token |\n| 调度重定向 | 带 Token 跳转子系统 |\n| 受信任担保人 | 子站向主站核实 Token |\n| 管理全局登录 | 退出时通知所有子系统 |\n\n<span class="source-tag">📖 来源：飞书知识库 - 概念解析</span>',
-
-      '什么是子站': '### 什么是子站？\n\n**一句话定义**\n子站是依赖主站进行身份认证的独立应用，专注业务功能，不存储完整用户信息。\n\n**类比**：园区各栋大楼\n\n**子站 6 大职责：**\n| 职责 | 说明 |\n|------|------|\n| 保护自身资源 | 核心功能和数据需门禁 |\n| 拦截未验证请求 | 无 Token 拒绝访问 |\n| 重定向去主站登录 | 无 Token 跳转主站 |\n| 验证通行证 | 校验 Token 签名和有效期 |\n| 提供个性化服务 | 按身份信息展示功能 |\n| 本地登出 | 仅本系统退出 |\n\n<span class="source-tag">📖 来源：飞书知识库 - 概念解析</span>',
-
-      'UUM是什么': '### 什么是 UUM？\n\n**一句话定义**\nUUM（统一身份认证/统一用户管理）是企业级的身份基础设施，管理账户生命周期、权限策略和身份同步。\n\n**类比**：园区人事管理中心\n\n**与 SSO 的关系：**\n- SSO 解决："一次登录，到处通行"（便捷性）\n- UUM 解决："你是谁、你能做什么、权限如何变"（管理与安全）\n\n**UUM 四大职能：**\n- 📋 发工牌（账户管理）：入职创建、离职注销\n- 🔑 定权限（权限管理）：谁能进哪些楼\n- 🔄 同步信息（身份同步）：调岗自动更新\n- 🎫 支持 SSO：为总保安亭提供花名册\n\n<span class="source-tag">📖 来源：飞书知识库 - 概念解析</span>',
-
-      '协议对比': '### 主流 SSO 认证协议对比\n\n| 维度 | OAuth2.0+OIDC | JWT | SAML 2.0 | Cookie 会话 |\n|------|-------------|-----|----------|------------|\n| 适用场景 | 开放平台、第三方 | 轻量无状态、移动 | 企业联邦、政务 | 同主域内部 Web |\n| smardaten 支持 | ✅ 推荐 | ✅ 支持 | ⚠️ 需评估 | ✅ 支持 |\n| 跨域 | ✅ | ✅ | ✅ | ❌ |\n| 复杂度 | 中 | 低 | 高 | 低 |\n| 安全性 | 高 | 中 | 极高 | 中 |\n\n**选型口诀**：开放用 OAuth，轻量用 JWT，联邦用 SAML，内部同域用 Cookie。\n\n<span class="source-tag">📖 来源：飞书知识库 - 常见SSO认证方式</span>',
-
-      '配置vs二开': '### 配置实现 vs 代码二开\n\n| 维度 | 配置实现（含服务编排） | 代码二开 |\n|------|---------------------|---------|\n| 工作量 | 0.5-1 人天 | 3-5 人天 |\n| 升级兼容 | ✅ 平台升级无影响 | ⚠️ 可能冲突 |\n| 维护成本 | 低 | 高 |\n| 灵活性 | 覆盖 80% 场景 | 覆盖 100% 场景 |\n| 推荐度 | ⭐⭐⭐ 优先 | ⭐ 最后 |\n\n**口诀**：配置优先记心间，二开方案最后选\n\n<span class="source-tag">📖 来源：SSO skill - 核心原则</span>',
-
-      'iframe vs 跳转': '### iframe 嵌套 vs 跳转免登\n\n| 维度 | iframe 嵌套 | 跳转免登 |\n|------|-----------|---------|\n| 用户体验 | 无感，不离开页面 | 感知跳转 |\n| 实现复杂度 | 跨域需配置同源 | 简单 |\n| 兼容性 | 需解决跨域 | 高 |\n| 适用场景 | 同源系统 | 跨域系统 |\n\n**口诀**：同源选 iframe，跨域选跳转\n\n<span class="source-tag">📖 来源：飞书知识库 - 设计章节</span>',
-
-      '数据同步策略': '### 数据同步策略对比\n\n| 方式 | 适用场景 | 优点 | 缺点 |\n|------|---------|------|------|\n| 实时 API 同步 | 高实时性 | 数据最新 | 需对方提供 API |\n| 定时批量同步 | 非关键系统 | 压力小、可控 | 有延迟窗口 |\n| 被动创建 | 快速对接 | 最轻量 | 仅首次登录 |\n\n**选型建议**：\n- 用户变化频繁 → 实时 API\n- 用户稳定 → 定时批量\n- 紧急上线 → 被动创建先通再优\n\n<span class="source-tag">📖 来源：飞书知识库 - 数据同步功能设计</span>'
-    };
+    // ========== 全部回答通过 API 获取 ==========
 
     // ========== UI ==========
     function addMessage(type, content, source) {
@@ -210,7 +162,7 @@
       }
     }
 
-    // ========== 核心发送逻辑 ==========
+    // ========== 核心发送逻辑（全部走 API） ==========
     async function sendMessage() {
       var input = document.getElementById('userInput');
       var question = input.value.trim();
@@ -221,43 +173,18 @@
       input.value = '';
       document.getElementById('sendBtn').disabled = true;
 
-      // 1. 先查本地 ANSWERS（精确匹配）
-      if (ANSWERS[question]) {
-        addMessage('bot', ANSWERS[question], 'local');
-        document.getElementById('sendBtn').disabled = false;
-        return;
-      }
-
-      // 2. 本地未命中 → 显示加载动画
+      // 显示加载动画
       showTyping();
       
-      // 3. 调用 SSO Skill API
+      // 调用 SSO Skill API
       var apiResult = await callSSOApi(question);
       
       hideTyping();
       
       if (apiResult) {
         addMessage('bot', apiResult.answer, 'api');
-        document.getElementById('sendBtn').disabled = false;
-        return;
-      }
-      
-      // 4. API 不可用 → 尝试本地模糊匹配
-      var bestMatch = null;
-      var bestScore = 0;
-      for (var key in ANSWERS) {
-        if (question.indexOf(key) !== -1 || key.indexOf(question) !== -1) {
-          if (key.length > bestScore) {
-            bestScore = key.length;
-            bestMatch = key;
-          }
-        }
-      }
-      
-      if (bestMatch) {
-        addMessage('bot', ANSWERS[bestMatch], 'local');
       } else {
-        addMessage('bot', '### 暂时无法回答\n\n当前知识库暂无相关内容，建议：\n1. 查看 [飞书 SSO 知识库](https://smartdata.feishu.cn/docx/DECudH1efohneNxm5wOc4ZNjnXy)\n2. 尝试换个方式提问\n3. 选择对应模式（PM/AE/排查）获取更多信息');
+        addMessage('bot', '### ⚠️ 服务暂不可用\n\nSSO Skill API 连接失败，请稍后重试。\n\n如持续不可用，请联系管理员检查 API 服务器状态。');
       }
       
       document.getElementById('sendBtn').disabled = false;
